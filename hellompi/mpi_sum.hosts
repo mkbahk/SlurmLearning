@@ -1,0 +1,26 @@
+#host201 slots=40 max_slots=120
+#host202 slots=40 max_slots=120
+#host203 slots=40 max_slots=120
+host201 
+host202 
+host203 
+host201 
+host202 
+host203 
+host201 
+host202 
+host203 
+host201 
+host202 
+host203 
+host201 
+host202 
+host203 
+host201 
+host202 
+host203 
+host201 
+host202 
+host203 
+#srv16   slots=80 max_slots=320
+#pod16   slots=256  max_slots=768

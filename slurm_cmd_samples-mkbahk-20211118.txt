@@ -1,0 +1,120 @@
+===================
+Interactive Samples
+-------------------
+salloc --partition=ivy_v100_2 -N 2 -n 4 --tasks-per-node=2 --gres=gpu:2 --comment={SBATCH 옵션이름} 
+
+
+
+=================
+Batch Job Samples
+-----------------
+
+#!/bin/bash
+#SBATCH --job-name=singleMatlab 
+#SBATCH --partition=super 
+#SBATCH --nodes=1
+#SBATCH --time=00-00:01:00 
+#SBATCH --output=single.%j.out 
+#SBATCH --error=single.%j.err
+
+
+#SBATCH --begin=now+1hour
+Defer the allocation of the job until the specified time
+#SBATCH –mail-type=ALL
+Notify user by email when certain event types occur (BEGIN, END, FAIL, REQUEUE, etc.)
+#SBATCH –mail-user=yi.du@utsouthwestern.edu
+Use to receive email notification of state changes as defined by –mail-type
+#SBATCH --mem=262144
+Specify the real memory required per node in MegaBytes.
+#SBATCH --nodelist=Nucleus0[10-20]
+Request a specific list of node names. The order of the node names in the list is not important, the node names will be sorted by SLURM
+
+
+Demo 02: sequential tasks
+  
+# Step 1: Steerable filter
+matlab –nodisplay -nodesktop –r “MDFillter(1), exit”
+# Step2: Filament Segmentation
+matlab –nodisplay –nodesktop –r “VimFilament(1), exit”
+# Step3: Network Analysis
+matlab –nodisplay –nodesktop –r “MDAnalysis(1), exit”
+# Step4: Plot Straightness
+matlab –nodisplay –nodesktop –r “forBiohpcTestPlot(1), exit”
+
+Demo 03: parallel tasks
+# submit job to background
+matlab –nodisplay –nodesktop -singleCompThread –r “forBiohpcTestPlot(1), exit” & 
+matlab –nodisplay –nodesktop -singleCompThread –r “forBiohpcTestPlot(2), exit” & 
+matlab –nodisplay –nodesktop -singleCompThread –r “forBiohpcTestPlot(3), exit” &
+# wait for background job to terminate, then returns
+wait
+
+
+#!/bin/bash
+#SBATCH --job-name=multiMatlab 
+#SBATCH --partition=super 
+#SBATCH --nodes=1
+#SBATCH --time=00-00:01:00 
+#SBATCH --output=multi.%j.out 
+#SBATCH --error=multi.%j.err
+module add matlab
+ 
+for i in`seq116`
+do
+  matlab –nodisplay –nodesktop -singleCompThread –r “forBiohpcTestPlot($i), exit” &
+done 
+wait
+
+
+
+#!/bin/bash
+#SBATCH --job-name=srunSingleNodeMatlab 
+#SBATCH --partition=super
+#SBATCH --nodes=1
+#SBATCH –ntasks=16
+#SBATCH --time=00-00:01:00
+#SBATCH --output=srunSingleNode.%j.out 
+#SBATCH --error=srunSingleNode.%j.err
+module add matlab 
+srun sh script.m
+
+
+script.m
+#!/bin/bash
+matlab –nodisplay –nodesktop -singleCompThread –r “forBiohpcTestPlot($SLURM_LOCALID+1), exit”
+
+
+//============Running Python Virtual Env ==========
+// AdS_sympy_test/AdS_sympy.sbatch
+#!/bin/bash
+#SBATCH --job-name=AdS_sympy_test
+#SBATCH --output=/home/t0rrant/AdS_sympy_test/AdS_sympy_test-%j.out
+#SBATCH --error=/home/t0rrant/AdS_sympy_test/AdS_sympy_test-%j.err
+#SBATCH --mail-user=<your e-mail should go here>
+#SBATCH --mail-type=ALL
+#SBATCH --time=1:00:00
+#SBATCH --mem=1G
+
+RUNPATH=/home/t0rrant/AdS_sympy_test/
+cd $RUNPATH
+source $HOME/.virtualenvs/AdS/bin/activate
+python AdS_sympy_test.py
+
+
+#!/bin/bash
+#SBATCH --job-name=cuda_test
+#SBATCH --partition=GPU 
+#SBATCH --gres=gpu:1 
+#SBATCH --time=0-00:10:00 
+#SBATCH –output=cuda.%j.out 
+#SBATCH --error=cuda.%j.err
+module add cuda65
+./matrixMul –wA=320 –hA=10240 –wB=10240 –hB=320
+
+• Jobs will not be allocated any generic resources unless specifically requested at job submit time.
+• Using the –gres option supported by sbatch and srun. Format: --gres=gpu:[n], where n is the number of GPUs
+• Use GPU partition
+• A(320, 10240) × B(10240, 320)
+
+
+
