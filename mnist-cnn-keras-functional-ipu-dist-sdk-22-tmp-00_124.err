@@ -1,0 +1,9 @@
+2021-11-25 08:51:04.979947: I tensorflow/compiler/plugin/poplar/driver/poplar_platform.cc:44] Poplar version: 2.3.0 (d9e4130346) Poplar package: 88f485e763
+2021-11-25 08:51:07.536824: I tensorflow/compiler/plugin/poplar/driver/poplar_platform.cc:44] Poplar version: 2.3.0 (d9e4130346) Poplar package: 88f485e763
+2021-11-25 08:51:08.685764: I tensorflow/compiler/jit/xla_cpu_device.cc:41] Not creating XLA devices, tf_xla_enable_xla_devices not set
+2021-11-25 08:51:08.790885: I tensorflow/compiler/mlir/mlir_graph_optimization_pass.cc:196] None of the MLIR optimization passes are enabled (registered 0 passes)
+2021-11-25 08:51:08.797908: I tensorflow/core/platform/profile_utils/cpu_utils.cc:112] CPU Frequency: 2245585000 Hz
+2021-11-25 08:51:09.204740: I tensorflow/compiler/plugin/poplar/driver/poplar_executor.cc:1714] Device /device:IPU:0 attached to IPU: 2
+2021-11-25 08:51:09.667101: I tensorflow/compiler/mlir/mlir_graph_optimization_pass.cc:116] None of the MLIR optimization passes are enabled (registered 2)
+2021-11-25 08:51:10.079091: W tensorflow/compiler/tf2xla/kernels/random_ops.cc:53] Warning: Using tf.random.uniform with XLA compilation will ignore seeds; consider using tf.random.stateless_uniform instead if reproducible behavior is desired.
+2021-11-25 08:51:10.144099: I tensorflow/compiler/jit/xla_compilation_cache.cc:347] Compiled cluster using XLA!  This line is logged at most once for the lifetime of the process.

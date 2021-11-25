@@ -1,1 +1,2 @@
-Gres=vipu:pod64:no_consume:64
+JobSubmitPlugins=vipu
+GresTypes=vipu

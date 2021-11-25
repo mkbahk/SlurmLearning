@@ -17,5 +17,6 @@ pip3 install keras==2.4.3
 pip3 install matplotlib==3.3.4
 module load tensorflow/2.4.1 numpy/1.19.5 keras/2.4.3 matplotlib/3.3.4
 srun python3 slurm_tf_python3_mnist.py
+srun deactivate
 rm -rf /mnt/nfs_slurm/slurm/venvtf241-01
 echo "=========Job Done==============="
