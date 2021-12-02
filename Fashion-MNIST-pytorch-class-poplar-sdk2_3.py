@@ -129,7 +129,7 @@ for i, (image, label) in enumerate(train_dataset):
     plt.imshow(image[0])
 
 # We then save this visualisation of sample images.
-plt.savefig("sample_images.png")
+plt.savefig("./Fashion-MNIST-pytorch-class-poplar-sdk2_3-sample_images.png")
 
 # ##### PopTorch DataLoader
 # We can feed batches of data into a PyTorch model by simply passing the input
@@ -270,7 +270,7 @@ poptorch_model.detachFromDevice()
 # Do not hesitate to experiment with different models: the model provided
 # in this tutorial is saved in the `static` folder if you need it.
 
-torch.save(model.state_dict(), "classifier.pth")
+torch.save(model.state_dict(), "./Fashion-MNIST-pytorch-class-poplar-sdk2_3-classifier.pth")
 
 
 # ### Evaluate the model
@@ -336,7 +336,7 @@ cm_plot = ConfusionMatrixDisplay(cm, display_labels=classes).plot(xticks_rotatio
 # We can save this visualisation of the confusion matrix.  Don't hesitate to
 # experiment: you can then compare your confusion matrix with the
 # [visualisation provided in the `static` folder](static/confusion_matrix.png).
-cm_plot.figure_.savefig("confusion_matrix.png")
+cm_plot.figure_.savefig("./Fashion-MNIST-pytorch-class-poplar-sdk2_3-confusion_matrix.png")
 
 # # Doing more with `poptorch.Options`
 # This class encapsulates the options that PopTorch and PopART will use
